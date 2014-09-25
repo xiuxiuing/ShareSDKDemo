@@ -837,6 +837,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareSDKDemo/ShareSDKDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShareSDKDemo/ShareSDKDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",
@@ -868,6 +869,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShareSDKDemo/ShareSDKDemo-Prefix.pch";
 				INFOPLIST_FILE = "ShareSDKDemo/ShareSDKDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShareSDK/Extend/SinaWeiboSDK",

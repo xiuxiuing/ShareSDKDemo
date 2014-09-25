@@ -18,5 +18,7 @@
 - (IBAction)loginClick:(id)sender;
 
 - (IBAction)exitClick:(id)sender;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *MessageClick;
+- (IBAction)message:(id)sender;
 
 @end

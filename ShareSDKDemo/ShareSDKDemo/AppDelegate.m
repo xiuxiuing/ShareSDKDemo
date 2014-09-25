@@ -24,6 +24,21 @@
                                 appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
                               redirectUri:@"http://www.sharesdk.cn"
                               weiboSDKCls:[WeiboSDK class]];
+    
+    
+    //连接邮件
+    [ShareSDK connectMail];
+    
+    //连接打印
+    [ShareSDK connectAirPrint];
+    
+    //连接拷贝
+    [ShareSDK connectCopy];
+    
+    //连接短信分享
+    [ShareSDK connectSMS];
+    
+
     return YES;
 }
 							

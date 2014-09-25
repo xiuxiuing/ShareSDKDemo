@@ -129,4 +129,50 @@
    // [viewController.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"heeh.jpg"] forBarMetrics:UIBarMetricsDefault];
     [viewController.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
 }
+- (IBAction)message:(id)sender {
+    //构造分享内容
+    id<ISSContent> publishContent = [ShareSDK content:@"hello haha"
+                                       defaultContent:@"quguoqu a faf a f faslfjal"
+                                                image:nil
+                                                title:@"ShareSDK"
+                                                  url:@"http://www.sharesdk.cn"
+                                          description:NSLocalizedString(@"TEXT_TEST_MSG", @"这是一条测试信息")
+                                            mediaType:SSPublishContentMediaTypeNews];
+    
+    //定制邮件信息
+    [publishContent addMailUnitWithSubject:@"Hello Mail"
+                                   content:INHERIT_VALUE
+                                    isHTML:[NSNumber numberWithBool:YES]
+                               attachments:INHERIT_VALUE
+                                        to:[NSArray arrayWithObjects:@"", nil]
+                                        cc:[NSArray arrayWithObjects:@"", nil]
+                                       bcc:[NSArray arrayWithObjects:@"", nil]];
+    
+    //定制短信信息
+    [publishContent addSMSUnitWithContent:@"Hello SMS"];
+    //创建弹出菜单容器
+    //id<ISSContainer> container = [ShareSDK container];
+    //[container setIPadContainerWithView:sender arrowDirect:UIPopoverArrowDirectionUp];
+    
+     NSArray *shareList = [ShareSDK getShareListWithType:ShareTypeMail,ShareTypeSMS, nil];
+    //弹出分享菜单
+    [ShareSDK showShareActionSheet:nil
+                         shareList:shareList
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions:nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSPublishContentStateSuccess)
+                                {
+                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms://13517296019, XXXXXXXXXXX"]];
+                                    NSLog(NSLocalizedString(@"TEXT_SHARE_SUC", @"分享成功"));
+                                }
+                                else if (state == SSPublishContentStateFail)
+                                {
+                                    NSLog(NSLocalizedString(@"TEXT_SHARE_FAI", @"分享失败,错误码:%d,错误描述:%@"), [error errorCode], [error errorDescription]);
+                                }
+                            }];
+
+}
 @end
